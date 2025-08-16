@@ -1,0 +1,1002 @@
+/*
+The file encoding is UTF-8 without BOM; the newline format is LF
+This file is part of the Trapped in Time game.
+SPDX-License-Identifier: CC0-1.0
+*/
+
+:start
+pln <h1 class="game_title">Trapped in Time</h1>
+pln <div class="game_subtitle">A Science Fiction adventure where YOU are the hero!</div>
+pln <div class="game_author">By Simon Christiansen</div>
+pln Porting to UrqW by Nikita Tseykovets
+btn init, Start the game
+btn about, About the game
+end
+
+:init
+varkill
+inspect_equipment = 0
+experience = 0
+primary_information = 0
+halvorsen_refuse = 0
+code = 0
+chrono_gun = 0
+near_death_experience = 0
+extra_information = 0
+suicide = 0
+javascript = "JSON.stringify(shuffleArray(['11', '48', '52', '62', '70']).concat('1'));"
+adventure_list = javascript
+adventure_queue = javascript
+goto 1
+
+:1
+chat_employees = 0
+machine_settings = "normal"
+pln You are standing in front of the magnificent skyscraper that houses the Copenhagen Institute of Chronology, the world’s leading center for chronological research.
+if count_1 < 2 then pln In spite of your many years of Chrono-training, you can’t help but feel butterflies in your stomach. Today is the day! Finally, your training will pay off.
+pln The building is an architectonic masterpiece of glass and steel, whose top disappears in the clouds far above you. The multitude of tinted windows reflect the sunlight in all directions. In front of you, a majestic marble staircase leads upwards to the front entrance, and scores of people are constantly coming and going. Most of them greet you on their way. Everyone knows the best chrononaut in Denmark!
+/*
+In this story, you decide what will happen by choosing which section to read next. You should not read the sections in order. At the end of each section, you will be told which new sections you can choose between. If you can’t make it through the story on your own, there is a solution on the final page.
+If you resolutely continue into the institute, turn to 36.
+If you would rather stop, and chat with one of the other employees, turn to 20.
+If you inspect your equipment, to ensure that you haven’t forgotten anything, turn to 56.
+*/
+btn 36, Resolutely continue into the institute
+btn 20, Stop and chat with one of the other employees
+if not inspect_equipment then btn 56, Inspect your equipment, to ensure that you haven’t forgotten anything
+/* For UrqW: Add the ability to turn to section 31, which is not in the original PDF */
+if not suicide and near_death_experience and not count_28 then btn 31, End it all
+end
+
+:2
+pln ”Listen, Alex,” you say. I’ve always wondered what’s behind that small metal door. How about you let me through? I promise not to tell anyone.”
+pln Alex thinks for a second. ”I’m sorry, but only authorized personnel are allowed there.”
+pln “Come on,“ you say, with your usual endearing smile. “No one will know.”
+pln For once, the smile is ineffective. ”Sorry. I can’t do it.”
+pln You shrug. It was worth a try.
+/*
+You continue through the double doors.
+Turn to 42.
+*/
+btn 42, Continue through the double doors
+if inspect_equipment then btn 12, Show your card to Alex
+if chrono_gun then btn 32, Threaten Alex with the Chrono-gun
+end
+
+:3
+/* For UrqW: Password guessing hint changed */
+pln The desk drawer is, like the rest of the office, filled with papers and articles requiring a PhD in chronology to understand. You rifle through the pile of papers, and uncover a small notebook with Halvorsen’s name on the front. Most of the book is filled with incomprehensible equations, but in the margin on the last page you discover an interesting note: “Remember: The password to the computer is based on the birth year of your favorite composer.”
+/* “Remember: The password to the computer is based on your favorite composer.” */
+/* Turn back to 57. */
+btn 57, Next
+end
+
+:4
+pln You step into the corridor, and the metal door slides shut behind you. You manage a few steps before an alarm sounds, and blinking red light almost blinds you. An army of blue security guards overpowers you.
+/* Turn to 14. */
+btn 14, Next
+end
+
+:5
+pln ”You’re right,” you say, and sigh. “Here. Take the gun. I’m really sorry. I’ve got no idea what I was thinking.”
+pln The guard replies by knocking you out with a well-placed uppercut. You awaken in a prison cell.
+/* Turn to 14. */
+btn 14, Next
+end
+
+:6
+pln ”No,” you say. ”I won’t do it. Prosecute me, if you must.”
+pln Halvorsen looks at you for a few seconds, and then sighs. “I really hoped you were joking. I’m afraid I have no choice but to turn you in.”
+pln A pair of blue security guards escort you out of the building. They charge you, and put you in a cell, pending your trial. Breaking a Chrono-contract is a serious matter.
+/* Turn to 14. */
+btn 14, Next
+end
+
+:7
+pln You order the guard to take you to the control room, and he reluctantly obeys.
+pln It feels like you wander around in the labyrinthine corridors for hours, and when you finally arrive you have long since lost track of where you are. Luckily, you don’t run into anyone else on the way.
+pln The guard stops at the end of a long corridor. Before you is a blank metal door with no handle. Next to the door is a code panel. You find the slip of paper with the code, and enters it. The door slides into the wall without a sound.
+pln “I’ve done what you asked, Sir,“ says the guard. ”Can I go now? I won’t tell anyone. We’ll just pretend this whole thing never happened.”
+/*
+If you let the guard go, turn to 39.
+If you shoot the guard, turn to 61.
+If you tie up the guard, turn to 26.
+*/
+btn 39, Let the guard go
+btn 61, Shoot the guard
+btn 26, Tie up the guard
+end
+
+:8
+machine_settings = "sabotage"
+pln You adjust the settings, so the machine should break down the next time anyone attempts to start it. You feel like a great burden is lifted from your shoulders. The Chrono-trip will be a failure, but at least you will finally have escaped from that accursed loop.
+/* The next time you attempt to use the time machine, add 6 to the number of the section, and turn to the section with the resulting number. */
+pln You leave the control room, and continue towards the basement.
+/* Turn to 42. */
+/* For UrqW: Instead of turning to 42, turn directly to 25 */
+btn 25, Next
+end
+
+:9
+/* You shoot Alex with the Chrono-gun. */
+pln Fwoomp! Alex’s head disappears in a cloud of Chrono-particles. The lifeless body slides down the chair. You hear screams, and shortly afterwards an army of blue security guards overpowers you.
+/* Turn to 14. */
+btn 14, Next
+end
+
+:10
+pln The bookshelf contains a ton of chronology books, but several other topics are covered as well. Halvorsen seems to be passionate about classical music, especially Beethoven.
+/*
+You can read the books, by turning to 29.
+Alternatively, you can keep exploring the office, by turning back to 57.
+*/
+btn 29, Read the books
+btn 57, Keep exploring the office
+end
+
+:11
+pln You are standing in a magnificent palace. The floor is marble, and Corinthian columns support the ceiling. Through all the windows, you see flames. The entire surrounding city is burning. The flames throw shadows on the walls, making you feel like you are standing in an enormous shadow theater.
+pln At the opposite end of the palace, a door leads to a balcony, on which you can make out a solitary figure. You walk closer, and see that the figure is a bearded man dressed in a white toga. He is playing a harp while staring at the fire, lost in reverie. It must be the emperor Nero!
+/*
+If you push Nero off the balcony, turn to 68.
+If you tell Nero that you are a god, turn to 17.
+You can also use your time travel ability to turn to any other section you desire.
+*/
+btn 68, Push Nero off the balcony
+btn 17, Tell Nero that you are a god
+end
+
+:12
+/* You show the card to Alex. */
+pln In a single smooth movement, you pull the card from your pocket, and drop it on the desk. The laminate glistens in the light, like hoarfrost on a clear morning. Alex looks at the card, and laughs. “Oh, go on then. How can I refuse a chrononaut?”
+pln ”Thanks, Alex,” you say, while the door is unlocked. “I’ll take full responsibility if I’m discovered.”
+pln “It’s fine. Just make sure no one sees you. I’ll see to it that no one else comes through for a while.”
+pln You disappear through the discreet metal door.
+/* Turn to 51. */
+btn 51, Next
+end
+
+:13
+pln You approach the desk, and exchange smiles with the receptionist. “Good morning, Alex.” Alex is a cute twentysomething, and the two of you often chat on your way to work.
+pln ”Good morning. Good to see you. Professor Halvorsen says you should go directly to the laboratory. I think he’s eager to get started. I’m keeping my fingers crossed for you!”
+/*
+If you exchange a few pleasantries, and then continue through the doors, turn 42.
+If you ask Alex if you can peek behind the discreet steel door, turn to 2.
+*/
+btn 42, Exchange a few pleasantries, and then continue through the doors
+btn 2, Ask Alex if you can peek behind the discreet steel door
+if inspect_equipment then btn 23, Show your card to Alex
+if experience then btn 33, Talk to Alex about your experience
+if chrono_gun then btn 43, Threaten Alex with the Chrono-gun
+if near_death_experience then btn 46, Talk to Alex about your near-death experience
+end
+
+:14
+experience = 1
+pln Your cell is 5x3 meters. It contains a small bed, a table, a chair, and a 15-inch television. You lie down on the bed, and exhale. This isn’t quite how you’d expected things to end, but at least it’s all over. You won’t be going on any more Chrono-trips.
+pln You feel dizzy, and pull yourself upright. The walls of the cell start to shimmer, like a mirage when you get too close. Your surroundings disappear entirely, and you feel like you are falling through the surrounding darkness.
+pln You blink, and feel yourself standing on steady ground. Ahead, is the entrance to the institute? What the hell is going on? You haven’t been anywhere near the time machine.
+/*
+You are back at the beginning of the story, but you have more options now than you had the first time through. When you meet someone, you can try telling him or her about your experiences, by adding 20 to the number of the current section, and turning to the section with the resulting number.
+Turn to 1.
+*/
+btn 1, Next
+end
+
+:15
+code = 1
+/*
+Congratulations! You have successfully guessed the password to Halvorsen’s computer.
+You enter the password, ”Beethoven1770”…
+*/
+/* For UrqW: Description of the guessed password changed */
+pln You enter the password, ”1770”, and the screen goes black. A few seconds later, the professor’s desktop appears, covered in strange icons. The computer is filled with chronological software, but in the Documents folder, you find what you need: A list of access codes for all the doors in the institute. You write them down on a slip of paper.
+/*
+If you need the access code to a door, you can enter it by adding 12 to the number of the section, and turning to the section with the resulting number.
+If you continue towards the basement, turn to 25.
+You can also return to the lobby, by turning to 36.
+*/
+btn 25, Continue towards the basement
+btn 36, Return to the lobby
+end
+
+:16
+/* You shoot Bent with the Chrono-gun. */
+pln You pull the trigger. BZapp! Bents left arm disappears, and blood gushes from the opening. He crumbles on the marble staircase, his face frozen in shock. You hear screams around you, and then an army of blue security guards overpowers you.
+/* Turn to 14. */
+btn 14, Next
+end
+
+:17
+/* This time adventure starts at 11. */
+pln You tell Nero that you are the god Chronos, sent to Rome to solve the problems of humanity. He does not believe you, until you use your time travel ability to disappear and reappear a few times. After a couple of more tricks with the Chrono-gun, Nero is convinced, drops to his knees, and swears you fealty.
+pln After the fire, you rule Rome together, and the Roman Empire enters a new golden age. No one dares to oppose the god, and those who doubt your divinity are disintegrated by the Chrono-gun. Life is good.
+/*
+If you spend the rest of your life ruling Rome, then your story ends here.
+Otherwise, you can use your time travel ability to turn to any other section.
+*/
+btn final17, Spend the rest of your life ruling Rome
+end
+
+:18
+/* This time adventure begins at 52. */
+pln The order is given, and you pour from the trenches. Adrenaline pumps through your veins. You can’t wait to fight the evil German soldiers.
+pln Seconds later, a machine gun mows you down.
+/* Fortunately, your time travel ability transcends even death, as you learned previously. You can return to life by turning to any other section you like. You can also choose to remain dead, and finally achieve peace. If so, your story ends here. */
+btn final18and71, Choose death and finally achieve peace
+end
+
+:19
+/* This time adventure starts at 70. */
+pln You cannot miss the chance to fulfill every time traveler’s dream. You pull the Chrono-gun. “What a weird cigarette holder,“ says Hitler. Those become his last words. A second later, he no longer has a head. You hurry away before someone sees you.
+pln Without Hitler, there is no World War II, and Europe is spared much suffering.
+pln There are other wars, but none as large or destructive. Even so, you cannot help but wonder if it was right to change the course of history.
+/* If you stay in the new Europe, then your story ends here. Otherwise, you can use your time travel ability to turn to any other section. */
+btn final19, Stay in the new Europe
+end
+
+:20
+chat_employees = 1
+pln You notice your good friend, Bent Asmussen, on his way down the stairs. Bent is one of the research assistants, responsible for ensuring that the Chrono-equipment stays functional. You often get a beer together after training. “Good morning, Bent!” you say.
+pln Bent’s face lights up, and he shakes your hand. “Good morning. I just checked the equipment, and everything is in perfect condition. Are you ready?”
+pln “Of course. I’ve been training for this day for years.”
+p ”Naturally!” Bent laughs. ”I look forward to hearing about your experiences when you return. I gotta go, though. Professor Halvorsen has sent me to pick up some spare parts. Good luck with everything!”
+if not (inspect_equipment or experience or chrono_gun or near_death_experience) \
+then pln #$Bent continues down the stairs, and soon disappears in the crowd. \
+else pln
+/*
+If you continue inside the building, turn 36.
+You can also inspect your equipment, if you haven’t already done so, by turning to 56.
+*/
+btn 36, Continue inside the building
+if not inspect_equipment then btn 56, Inspect your equipment
+if inspect_equipment then btn 30, Show your card to Bent
+if experience then btn 40, Talk to Bent about your experience
+if chrono_gun then btn 50, Threaten Bent with the Chrono-gun
+if near_death_experience then btn 53, Talk to Bent about your near-death experience
+end
+
+:21
+/* This time adventure starts at 62. */
+pln You hide behind a tree, and observe the events with detached scientific objectivity. The Triceratops attempts to break free, but it is too late. The Tyrannosaurus bites into its back, and lifts it up high into the air. Its legs are flailing, trying to reach the ground that is no longer there. With a powerful bite, the Tyrannosaurus breaks its back, like a cat killing a mouse. The dead Triceratops drops to the ground, and the Tyrannosaurus feasts on its prey.
+pln You observe the gruesome sight, reminding yourself that it is all a part of the cycle of nature. After a while, you decide to move on. There are no doubt many interesting sights to see in this age.
+/* If you decide to spend the rest of your days exploring the prehistoric world, then your story ends here. Otherwise, you can use your time travel ability to turn to any other section. */
+btn final21, Spend the rest of your days exploring the prehistoric world
+end
+
+:22
+/* This time adventure starts at 48. */
+pln The horse gallops towards the black knight, while you struggle to stay in the saddle. Several times, you almost drop the lance, but you have an ace up your sleeve.
+pln When you have almost reached the black knight, you sneak out the Chrono-gun, and a piece of his saddle straps disappears. You just manage to graze him with your lance, to make the fall look legit.
+pln You win the following events in a similar way, and soon the crowd starts cheering for you. You become the undisputed winner of the tournament, and the people carry you through the city in triumph.
+/* If you decide to live out the rest of your days as a famous knight, then your story ends here. Otherwise, you can use your time travel ability to turn to any other section. */
+btn final22, Live out the rest of your days as a famous knight
+end
+
+:23
+/* You show your card to Alex. */
+pln You reach for the card in your pocket, but change your mind. There is no reason to impress Alex right now.
+/* Turn back to 13. */
+btn 13, Next
+end
+
+:24
+/* This time adventure starts at 62. */
+pln You pull the Chrono-gun, and smile. “Hasta la vista, Baby.“
+pln One of the forearms on the Tyrannosaurus disappears. The great lizard roars in pain, and tries to localize the source of the attack. Its other forearm disappears as well, followed by the legs, and the Tyrannosaurus drops to the ground. You take mercy on it, and finish the job.
+pln You slowly approach the Triceratops, and stroke its side. “Easy, friend. It is over now.” The Triceratops calms down, and you free its foot from the root. It rubs the side of its horn against you, and purrs with gratitude. It then kneels on its forelegs, allowing you to climb onto its back.
+pln After you have settled in, the Triceratops starts moving, and soon you are galloping through the jungle at a breakneck pace, while you struggle to hold on. The other dinosaurs jump out of your way, and soon you are clear of the jungle, with nothing but the clear sky above you. The sun is setting, and the Triceratops gallops towards the sunset, with you on its back.
+/* If you spend the rest of your days exploring the prehistoric world on the back of your tame Triceratops, then your story ends here. Otherwise, you can use your time travel ability to turn to any other section. */
+btn final24, Spend the rest of your days exploring the prehistoric world on the back of your tame Triceratops
+end
+
+:25
+pln You walk briskly through the basement corridors, until you reach the door to the room containing the Chrono-machine. The door in front of you is polished steel, with no handle. You display your card, and the door silently slides into the wall.
+pln The Chrono-lab is an enormous circular hall, with a domed roof. Along the walls, you see all sorts of computers, screens, and electronic equipment. Dozens of technicians inspect the equipment, pushing buttons, and making incomprehensible notes on their clipboards.
+pln In the middle of the room is the Chrono-machine: A five-meter tall egg-shaped structure, with no visible openings anywhere on the smooth surface. It is made of that special alloy of silver, steel and chronimium, which – in the right proportions – enables the machine to open a gate through the space-time continuum.
+pln Professor Halvorsen emerges from the crowd and approaches you. Unlike the technicians in their white lab coats, he is dressed in an impeccable gray suit.
+pln He smiles. “Good to see you. We just finished the final tests, and everything appears to be in order. Are you ready to commence your first real Chrono-trip?”
+/*
+If you say, you are ready, turn to 60.
+If you would rather not, turn to 41.
+*/
+btn 60, ”I am ready.”
+btn 41, ”Could we maybe put it off to another day?”
+if inspect_equipment then btn 35, Show your card to Halvorsen
+if experience then btn 45, Talk to Halvorsen about your experience
+if primary_information and not count_7 then btn 55, Ask Halvorsen about the code for the control room
+if near_death_experience then btn 58, Talk to Halvorsen about your near-death experience
+end
+
+:26
+pln ”Sorry,” you say. ”I’m not that stupid. I know you have handcuffs and a gag in your belt. Hand them over.”
+pln The guard looks at you. Anger smolders in his eyes. He hands over the stuff without a word. You step into the control room, and the door slides shut. You handcuff the guard in the corner, and sigh with relief.
+pln “I’m sorry for this,“ you say. “I’ll make sure you are freed when I’ve handled the situation.”
+/* Turn to 73. */
+btn 73, Next
+end
+
+:27
+machine_settings = "explode"
+pln You adjust the settings, so the machine will overheat and explode the next time someone tries to start it. You will die, of course, but that is preferable to repeating the same day for all eternity. You are already looking forward to gaining peace.
+/* The next time you use the time machine, add 9 to the number of the section, and turn to the section with the resulting number. */
+pln You leave the control room, and continue towards the basement.
+/* Turn to 42. */
+/* For UrqW: Instead of turning to 42, turn directly to 25 */
+btn 25, Next
+end
+
+:28
+pln ”I guess there is no harm in trying,” you say. ”What do I do?”
+pln “Well, this is purely theoretical,“ says the professor. “I haven’t tried it before. Start by closing your eyes.”
+pln You close your eyes.
+pln ”A simple act of the will should be sufficient,” says the professor. “Imagine a time you want to travel to, and try visualizing it as clearly as possible.”
+pln You do as the professor says, and visualize your desired destination in as much detail as possible, so it almost feels as if you are actually there.
+pln “What then, Professor? Professor?”
+pln You open your eyes, and find yourself in a different place.
+/*
+You can now use your time travel ability to turn to any section you desire! In fact, you have always had this ability. Every time you cheated and read a section, you had not been told to read, it was actually a subconscious trip through time!
+There are several time travel adventures hidden in this text, which cannot be reached, except by finding them yourself. Good luck on your journey!
+*/
+if not common then common = "travel" & btn travel, Next
+end
+
+:29
+pln You pick up one of the books and leaf through it. “Ludwig van Beethoven was born 1770, in the city of Bonn, then the capital of the Electorate of Cologne. He displayed musical talents at an early age and blablablabla.”
+pln You put the book back on the shelf. Classical music does not interest you.
+/* Turn back to 57. */
+btn 57, Next
+end
+
+:30
+/* You show your card to Bent. */
+pln Bent laughs. ”Haha. You just have to remind me that you’re the chrononaut? I’m perfectly happy having a stable job, and letting you handle all the dangerous adventures.”
+/*
+If you continue inside the institute, turn to 36.
+You can also inspect your equipment, if you have not already done so, by turning to 56.
+*/
+btn 36, Continue inside the institute
+if not inspect_equipment then btn 56, Inspect your equipment
+end
+
+:31
+suicide = 1
+/* You attempt to shoot yourself in front of the institute. */
+pln You produce the Chrono-gun from your inner pocket. A few bystanders look in your direction, but no one seems very surprised that a famous chrononaut is inspecting a piece of chrononautical equipment.
+pln You take a deep breath, look straight into the thin metal tube, and squeeze the trigger.
+pln For a moment, there is nothing. Darkness replaces the nothingness, and you sigh, as you realize that you are still conscious. You close your eyes, and open them.
+pln The marble staircase rises ahead.
+/* Turn to 1. */
+btn 1, Next
+end
+
+:32
+/* You threaten Alex with the Chrono-gun. */
+pln You pull the Chrono-gun. “Let me through the door, Alex,“ you say.
+pln “Okay, calm down,“ says Alex. “I don’t know why you’re treating me like this. I thought we were friends.”
+/*
+If you shoot Alex, turn to 9.
+If you go through the door, turn to 4.
+*/
+btn 9, Shoot Alex
+btn 4, Go through the door
+end
+
+:33
+/* You tell Alex about your experience. */
+pln ”Alex,” you say. ”There is something wrong with the Chrono-machine. It keeps sending me back to the start of the day. Can you let me through the door behind the desk? Maybe I can find some clues back there.”
+pln Alex hesitates. ”Are you sure, that’s a good idea? Shouldn’t you talk to Professor Halvorsen first? If you’re sure, I suppose I can let you through. You just have to promise not to tell anyone.”
+/*
+If you accept the offer, turn to 51.
+If you would rather continue through the double doors, turn to 42.
+*/
+btn 51, Accept the offer
+btn 42, Continue through the double doors
+end
+
+:34
+pln You continue down the corridor, and are soon lost in a labyrinth of identical white hallways. You consider going back to the lobby, but you no longer have any idea how to get there.
+pln You feel a hand on your shoulder. You had not heard anyone approaching.
+pln That damn carpet!
+pln You turn around and face a man clad in the blue security guard uniform used by the institute. He is almost half a head taller than you are, and looks like he works out at least six times a week.
+pln ”You seem lost,” says the guard. “This area is restricted to authorized technicians.”
+/*
+He escorts you back to the lobby, and you decide to move on.
+Turn to 42.
+*/
+if not (inspect_equipment or experience or chrono_gun or near_death_experience) \
+then pln He escorts you back to the lobby.
+btn 42, Move on
+if inspect_equipment then btn 44, Show your card to the guard
+if experience then btn 54, Talk to the guard about your experience
+if chrono_gun then btn 64, Threaten the guard with the Chrono-gun
+if near_death_experience then btn 67, Talk to the guard about your near-death experience
+end
+
+:35
+/* You show your card to Halvorsen. */
+pln ”Good, you remembered your card,” he says. “I don’t think you will need it on your trip, though. Are you ready?”
+/*
+If you say, you are ready, turn to 60.
+If you would rather not go, turn to 41.
+*/
+btn 60, ”I am ready.”
+btn 41, ”Could we maybe put it off to another day?”
+end
+
+:36
+pln Even though you have worked here for years, you still feel impressed by the majestic atmosphere in the lobby. The floor is polished marble, divided into white, red, and black squares. From the ceiling high above you, a large chandelier lights up the entire room. The domed roof is painted blue, with white clouds, so you almost feel like you are standing outside on a bright summer day.
+pln At the opposite end of the room, two wide double doors lead to the research wing. To your left, close to the entrance, a secretary sits behind a chrome steel desk.
+pln Behind the desk, you can just barely make out the outline of a discreet metal door.
+/*
+If you continue through the double doors, turn to 42.
+If you would rather stay and chat with the receptionist, turn to 13.
+*/
+btn 42, Continue through the double doors
+btn 13, Stay and chat with the receptionist
+end
+
+:37
+if code then goto 49
+pln You try the handle, but the door is locked. You probably need to enter a code on the keypad to get through. Since you do not have the code, you decide to continue down the corridor.
+/* Turn to 34. */
+btn 34, Next
+end
+
+:38
+pln ”Good,” says the professor. ”I’ll make sure to activate the component. Get in the machine, and I’ll let you know when everything is ready.”
+pln You consider asking the professor why you should trust him, but realize it’s pointless. If he cheats you, you can just not trust him the next time.
+pln You sit down in the revolving chair, praying that this will be the last time. The sound of technicians working on the machine penetrates through the wall. After about 10 minutes, you hear the professor through the intercom: “Everything should be working now. You can activate the device by pressing the black button.“
+pln You take a deep breath, and push the button. The usual vibrations commence, and you sigh. Then the vibrations subside, and a loud squealing noise replaces them, gradually intensifying, until you feel like your eardrums could burst any minute.
+pln The noise stops abruptly, and there is complete silence. The door slides open. You step out of the machine.
+pln The professor looks sullen. ”I hope you’re happy now. The instruments show that the entire room has been completely cleaned of all forms of Chrono-radiation. The machine, as I feared, has overloaded. It will take months to prepare it for a new attempt!“
+pln You nod. ”It will be without me, Professor. I quit. Sorry, but I think I prefer to do something else.”
+pln You hand him your card, and he shrugs. “I guess it’s for the best. You’re too unstable to be a good chrononaut anyway. Good luck.”
+pln On your way home, you watch your surroundings, expecting them to start shimmering, but nothing happens. You get home, and collapse into your easy chair.
+pln The next day, the sun is shining. You go for a walk in the park, and take joy in the fact that the day will be new and unique. Tomorrow, there will be another day.
+pln It seems like you have successfully broken out of the time loop, but can you ever be entirely sure? If you ever read this story again, the loop has repeated, and you are still Trapped in Time! To save our poor hero, you must learn to put the past behind you.
+quit
+end
+
+:39
+pln ”Thank you, sir,” says the guard, and disappears down the corridor, without a sound. Just as you are about to step through the door, an alarm blares, and blinking red light fills the corridor. An army of blue security guards overpowers you.
+/* Turn to 14. */
+btn 14, Next
+end
+
+:40
+primary_information = 1
+/* You talk to Bent about your experience. */
+pln ”Listen, Bent,” you say. ”Something is wrong. The time machine keeps sending me back to the start of this day. I’ll never get anywhere this way. Do you have any idea what might be going on?”
+pln ”Seriously,” says Bent. ”This isn’t just a joke?”
+pln Your expression persuades him otherwise.
+pln Bent nods slowly. ”Well, I’m only a technician, but I’ve heard rumors that such a thing is possible. Theoreticians have deduced that the Chrono-machine might lead some people to be caught in a Chrono-loop, where they repeat the same time period, over and over. The theory wasn’t taken seriously, but maybe something like that is happening to you?”
+pln ”Thank god. Then I’m not just going mad. What can I do about it? How do I stop the loop?”
+pln “I don’t know,” says Bent, and shrugs. “As I said, I’m just a technician. Try asking Halvorsen about it. I’ve heard that the control room for the Chrono-machine is located behind the reception desk, but you probably need an access code to enter. Maybe you can get the code from Halvorsen? I’m sorry I can’t do more to help.”
+pln You thank Bent for his help, and he continues down the stairs. You consider your options. If Halvorsen will not help, maybe you can find some information in his office. You have been there several times before.
+/*
+You can try asking Halvorsen about the code to the control room, by adding 30 to the section where you first meet him, and turning to the resulting section.
+You can also visit Halvorsen’s office by adding 15 to the section where you are in the elevator.
+If you continue inside, turn to 36.
+You can also inspect your equipment, if you have not already done so, by turning to 56.
+*/
+btn 36, Continue inside
+if not inspect_equipment then btn 56, Inspect your equipment
+end
+
+:41
+pln ”I’m actually not feeling well…” you say. ”Could we maybe put it off to another day?”
+pln The professor frowns. “Are you ill? I suppose you remembered to bring a statement from your doctor, then?”
+pln You hesitate. He laughs and claps you on your shoulder. ”Don’t worry. Being nervous is perfectly normal. Just relax, and everything will be fine. Besides, you’ve signed a contract. If you refuse to do your job, the institute will have no choice but to prosecute you.”
+/*
+If you say, you are ready, turn to 60.
+If you refuse, turn to 6.
+*/
+btn 60, ”I am ready.”
+btn 6, ”No. I won’t do it.”
+end
+
+:42
+pln You step through the wide double doors, and continue through the corridors of the institute, towards the elevator. Several of the employees greet you, and wish you luck.
+pln You make time to sign a few autographs.
+p After a while, you reach the chrome metal door leading to the elevator. The door opens with a low hiss.
+/* For UrqW: The text of section 42 was divided into two parts (labels 42 and 42_more) */
+if not primary_information or not halvorsen_refuse or code then p #$& goto 42_more else pln
+btn 42_more, Moving on to the basement
+btn 57, Visit Halvorsen’s office
+end
+
+:42_more
+pln You enter, and press the button for the basement. The basement of the institute is filled with laboratories, and stretches for many kilometers beneath the streets of Copenhagen.
+pln The elevator starts moving downwards, faster and faster, until you are almost weightless. It brakes, and the deceleration makes you feel like you weigh a ton. You grit your teeth.
+pln The door opens, and you step out into the basement.
+/* Turn to 25. */
+btn 25, Next
+end
+
+:43
+/* You threaten Alex with the Chrono-gun. */
+pln You pull the Chrono-gun, and Alex gasps. “What the hell is that? Do you mind putting it away? I don’t like being threatened, even if it’s just a joke.”
+/*
+If you shoot Alex, turn to 9.
+If you pretend it was just a joke, turn back to 13.
+*/
+btn 9, Shoot Alex
+btn 13, Pretend it was just a joke
+end
+
+:44
+/* You show your card to the guard. */
+pln The guard looks at the card, and nods. “I respect what you’re doing for Denmark, Sir, but this area is still restricted to authorized technicians.”
+pln He escorts you back to the lobby, and you decide to move on.
+/* Turn to 42. */
+btn 42, Next
+end
+
+:45
+/* You tell Halvorsen about your experience. */
+pln ”Professor, I think there is something wrong with the machine. I’ve already made one Chrono-trip, and it just sent me back to the beginning of this day. Perhaps the settings are wrong?”
+pln Halvorsen laughs. ”It sounds like you just had a bad dream. It’s perfectly normal to be nervous the first time. Just relax, and remember your training. Everything is going to be ok.”
+pln “It didn’t feel like a dream…”
+pln ”Listen,” says the professor, and smiles. “I’ve personally inspected the machine, and it’s completely impossible for it to only send you back a few hours. Even if I was wrong, the machine would have travelled back in time with you, and would no longer be in the room. It’s right there. See for yourself.”
+pln The egg-shaped machine is sitting in the middle of the room, waiting for you.
+pln Perhaps he is right. Maybe it’s just stress. It felt so real, though…
+/*
+If you say, you are ready, turn to 60.
+If you try to get out of it, turn to 41.
+*/
+btn 60, ”I am ready.”
+btn 41, ”Could we maybe put it off to another day?”
+end
+
+:46
+/* You talk to Alex about your near-death experience. */
+pln ”I died, Alex,” you say. “I’ve been to the other side, and returned.”
+pln Alex looks at you. There is a long pause. ”Are you okay?”
+pln “But even death could not free me. Life is an eternally repeating wheel. Perhaps this is what the Buddhists mean, without knowing it themselves.”
+pln “You’re a bit weird today,“ says Alex. “If you act like this around Halvorsen, you might be declared unfit.”
+/* Turn to 13. */
+btn 13, Next
+end
+
+:47
+pln You turn on the computer, and a message appears on the screen: ”Enter Password.” Damn it.
+/*
+If you can guess the password to Halvorsen’s computer, then take the sum of the digits contained in it, and turn to the corresponding section. If, for example, you believe the password to be ‘Pasword1234’, you should turn to section 1+2+3+4 = 10. If you guess correctly, the resulting section will congratulate you in cursive.
+Otherwise, turn back to 57.
+*/
+/* For UrqW: Password guessing mechanics modified */
+input password
+cls
+if password = "1770" then goto 15 else pln No, you didn’t guess. & goto 57
+end
+
+:48
+pln You are in the age of chivalry, on a meadow covered in colorful tents. From the tops of the tents, pennants are swaying in the wind. Knights in shining armor are walking and riding everywhere, and rows of benches are ready for the spectators. Clearly, a big tournament is about to take place.
+/*
+If you participate in the tournament, turn to 59.
+If you just watch, you have a great time, but do not experience anything important. When you get tired of medieval times, you can use your time travel ability to turn to any other section.
+*/
+btn 59, Participate in the tournament
+end
+
+:49
+chrono_gun = 1
+/* You enter the code for the door. */
+pln You enter the code from Halvorsen’s computer, and the door opens with a soft click. The room behind it seems to be some kind of storage for experimental equipment. It is definitely not a control room, anyway.
+pln Most of the equipment seems intended for use in a lab, but several objects have obvious military applications. There have been rumors in the media that the government is funding research into Chrono-weaponry, but you always assumed it was just slander.
+pln Most of the weapons are too big for you to take with you, but on one of the shelves, you find a discreet gun, which, according to the description, is an experimental Chrono-gun. It consists of a thin metal tube with a trigger. It is apparently capable of teleporting parts of the targets tissue to random time periods.
+/* When you meet someone, you can attempt to threaten him or her with the Chrono-gun, by adding 30 to the section, and turning to the resulting section. */
+pln Unfortunately, you cannot use the gun in the basement of the institute, due to Chrono-interference from the equipment.
+pln You decide to continue down the corridor.
+/* Turn to 34. */
+btn 34, Next
+end
+
+:50
+/* You threaten Bent with the Chrono-gun. */
+pln Bent puts his hands in the air, and laughs nervously. “A Chrono-gun! Where on earth did you get that? I had no idea you had clearance for that kind of stuff. This joke is in bad taste, you know. Chrono-weapons aren’t toys.”
+/*
+If you shoot Bent, turn to 16.
+If you put away the gun, and enter the building, turn to 42.
+*/
+btn 16, Shoot Bent
+btn 42, Put away the gun and enter the building
+end
+
+:51
+pln You step into a long white corridor, lit by fluorescent tubes. A beige carpet covers the floor, rendering your steps almost completely silent. Unfortunately, this also means you have no idea if anyone else is nearby.
+if chrono_gun then goto 34
+pln A bit farther, down the corridor, you see a white door, almost indistinguishable from the surrounding wall. Next to the door is a code panel.
+/*
+If you attempt to open the white door, turn to 37.
+If you continue down the corridor, turn to 34.
+*/
+btn 37, Attempt to open the white door
+btn 34, Continue down the corridor
+end
+
+:52
+pln You are in a trench, along with a multitude of dirty and weary soldiers. Artillery grenades explode above your head. The mood is tense. You pass the time playing cards with some of the guys.
+pln A dogged officer approaches. “This is it, boys. We’ve been ordered to assault the German position. Be ready in ten.”
+/*
+If you use your Chrono-gun during the assault, turn to 71.
+If you prefer the authentic experience of participating in World War I, turn to 18.
+*/
+btn 71, Use your Chrono-gun during the assault
+btn 18, Prefer the authentic experience of participating in World War I
+end
+
+:53
+extra_information = 1
+/* You talk to Bent about your near-death experience. */
+pln Bent sees your expression, and the greeting dies on his lips. “Is something wrong?”
+pln ”I’m trapped, Bent,” you say. “No matter what I do, I keep returning to the start of the same day. I’ve tried everything.”
+pln Bent nods slowly. “Well, I’m only a technician, but…”
+pln “I’ve been in the control room!” you yell. “I tried to sabotage the machine, but it’s no good. The day repeats anyway. Halvorsen refuses to take me seriously. He says it’s just stress, and that you have no idea what you’re talking about.”
+pln ”Okay, calm down,” says Bent. “If the Chrono-machine isn’t the cause, it must be some kind of Chrono-radiation. I know there is an experimental component in the Chrono-machine, which is capable of removing Chrono-radiation. I helped install that one myself, so Halvorsen can’t deny it.”
+pln ”Thanks, Bent. I’ll look into it. And stop saying ‘Chrono’ all the time, damn it. It’s called TIME! It’s a fucking time machine!”
+pln “Sure, sure,” says Bent, and shakes his head. “No reason to be so unprofessional.”
+pln You continue up the stairs.
+/*
+The next time Halvorsen refuses to take you seriously, you can tell him what Bent said, by adding 7 to the section, and turning to the resulting section.
+Turn to 36.
+*/
+btn 36, Next
+end
+
+:54
+/* You tell the guard about your experience. */
+pln ”You have to let me pass,” you tell the guard. “The time machine keeps sending me back to the start of the day. If I can just get to the control room, I might be able to figure out what’s wrong.”
+pln His expression is like set in stone. “That’s very interesting, Sir, but this area is restricted to authorized technicians.”
+pln He escorts you back to the lobby, and you decide to move on.
+/* Turn to 42. */
+btn 42, Next
+end
+
+:55
+halvorsen_refuse = 1
+/* You ask Halvorsen about the code for the control room. */
+pln ”Professor, I spoke to Bent. He says it’s possible that I’m trapped in a Chrono-loop, which keeps sending me back to the start of the day. Supposedly, there are theories which predict it.”
+pln Professor Halvorsen sighs, and shakes his head. “Oh, Bent, really. He is a good technician, but he overestimates his theoretical skills. I know those theories, but the calculations are complete nonsense. The theoretical topology is not at all renormalizable.”
+pln ”Bent says the control room for the Chrono-machine is behind the reception desk. If you just give me the access code, I can check it out myself.”
+pln “You should stop listening to Bent’s crazy ideas. You’re just nervous, and had a bad dream. That’s perfectly normal. Take a deep breath. Good. That helped, right? Are you ready to get started now?”
+/*
+If you say you are ready, turn to 60.
+If you refuse, turn to 41.
+*/
+btn 60, ”I am ready.”
+btn 41, ”Could we maybe put it off to another day?”
+end
+
+:56
+inspect_equipment = 1
+pln You are dressed in your usual working clothes: A silver chrononaut jumpsuit, with the logo of the institute sewn onto the left side. The logo is a stylized picture of a sun watch, formed of metallic threads, glinting in the sunlight.
+pln You put your hand into your pocket, and note that you have remembered your ID card: Laminated cardboard, with the logo at the top right corner. At the center of the card is the text: ”Chrononaut”
+pln A card like that demands respect everywhere in Copenhagen, and many stores offer special deals for chrononauts.
+/*
+Whenever you talk to someone during this story, you can try showing him or her the card, by adding 10 to the number of the section, and turning to the section with the resulting number. If it is possible to use the card at that time, the resulting section will start with a statement to that effect, in cursive writing.
+You can enter the institute, by turning to 36.
+You can also chat with one of the other employees, if you have not already done so, by turning to 20.
+*/
+btn 36, Enter the institute
+if not chat_employees then btn 20, Chat with one of the other employees
+end
+
+:57
+/* You visit Halvorsen’s office. */
+if previous_loc = "42" then pln You decide to visit Halvorsen’s office, before moving on to the basement. You press the button for the floor in question, and the elevator starts moving.
+pln The office is located at one of the top floors, with an amazing view of Copenhagen. It would probably be a nice room if it were not for the mess. Books and papers are everywhere. In the center of the room is an impressive mahogany desk, with a state-of-the-art MacBook Ultimate. Papers cover the rest of the desk. Bookshelves hide the walls, containing books about almost every topic imaginable. Finding any useful information in here will not be easy.
+/*
+If you look in the desk drawer, turn to 3.
+If you turn on the computer, turn to 47.
+If you inspect the shelves, turn to 10.
+If you leave empty-handed, turn to 25.
+*/
+btn 3, Look in the desk drawer
+btn 47, Turn on the computer
+btn 10, Inspect the shelves
+btn 25, Leave empty-handed
+end
+
+:58
+/* You tell the professor about your near-death experience. */
+pln You put both your hands on the professor’s shoulders. “I’m trapped, Professor. The day keeps repeating, over and over. I’ve tried everything to make it stop. I blew up the machine. I died, and returned to life. I’ve heard all your stupid excuses, countless times. Don’t say it’s just stress. Bent says that time-loops are theoretically possible. What can we do?”
+pln The professor opens his mouth, but closes it again. He licks his lips. “I don’t know what to say… I’ve never seen you like this before. Are you sure it’s not just s…”
+pln Your murderous look stops him.
+pln ”Okay, let me think. Some theoreticians have claimed that too much Chrono-radiation could lead to people travelling through time by themselves. You have been exposed to a lot of radiation during training…”
+pln “How do we stop it?”
+pln The professor smiles, and slowly removes your hands from his shoulders.
+pln “Calm down. If those theories are correct, the effect will go away by itself once the Chrono-radiation disappears. It probably won’t happen more than once or twice again. How about you get in the machine, and we’ll see if it doesn’t work out this time?”
+/*
+If you agree, turn to 60.
+If you refuse, turn to 41.
+*/
+btn 60, ”I am ready.”
+btn 41, ”Could we maybe put it off to another day?”
+if extra_information then btn 65, Tell the professor what Bent said
+end
+
+:59
+/* This time adventure starts at 48. */
+pln You manage to steal a set of armor from one of the tents, and sign up as Sir Rosencrantz of Denmark! You borrow a horse and a lance, and learn that you have to fight the black knight in the first event.
+/*
+If you use modern technology to cheat, turn to 22.
+If you try to win honestly, turn to 72.
+*/
+btn 22, Use modern technology to cheat
+btn 72, Try to win honestly
+end
+
+:60
+if machine_settings = "sabotage" then goto 66
+if machine_settings = "explode" then goto 69
+experience = 1
+pln Professor Halvorsen snaps his fingers, and a technician appears. The technician pushes a button, and a crack appears on the surface of the blank metal egg.
+pln The crack grows, and turns into an opening large enough for an adult to enter.
+pln Professor Halvorsen shakes your hand. “Good luck on your journey. It’s an honor to have you testing the machine. I look forward to hearing about your experiences, when you return.”
+pln ”Thank you, Professor,” you say. “This journey wouldn’t be happening if it wasn’t for your work. The honor is entirely on my side.”
+pln You straighten your back, and enter the Chrono-machine. The opening closes behind you. Instrument panels cover the inner wall. In the middle of the room is a revolving chair, from which you can service all the panels. You sit down in the chair. The professor’s voice sounds over the intercom.
+pln “Are you ready in there? We have already calibrated the measuring equipment. You can start the machine by pushing the red button at panel b17. Go for it, whenever you are ready.”
+pln You take a deep breath, and push the button. At first, nothing happens. Then the machine begins to vibrate. You feel dizzy.
+pln You hear the professor over the intercom again. ”Something is wrong. The instruments show severe Chrono-interference. We’ll have to stop the machine.”
+pln ”Is there something I can do, professor?” you ask.
+pln ”Yes, try to stop the machine from your side. You’ll have to push … skrsksrsksrsrk.”
+pln The professor’s voice disappears. You try to get up, but the dizziness overpowers you, and you fall back onto the chair. The walls start shimmering, like a mirage when you get too close. You reach out to touch them, and they pop, like the surface of a soap bubble. Your surroundings disappear entirely, and you feel like you are falling through the darkness.
+pln You blink, and find yourself on solid ground. Ahead, you see the entrance to the institute. You look at your watch: Morning. The exact same time when you showed up at the institute earlier! It makes no sense. The machine should have sent you to an entirely different time period.
+/*
+You are back at the start of the story, but you now have more options than you did the first time. Whenever you meet someone, you can try telling that person about your experience by adding 20 to the number of the section, and turning to the section with the resulting number.
+Turn to 1.
+*/
+btn 1, Next
+end
+
+:61
+pln Freem! The Chrono-gun digs a hole through the torso of the guard, so you can see the wall behind him. He collapses. With his last breath, he manages to push a button on his belt. An alarm starts, and blinking red light fills the corridor. An army of blue security guards overpowers you.
+/* Turn to 14. */
+btn 14, Next
+end
+
+:62
+pln You are in the dinosaur age, in a moist jungle, filled with all kinds of dinosaurs, and prehistoric insects. Suddenly, a ravenous Velociraptor jumps out from the undergrowth, and attacks. You grab it by its feathers, and slam it against one of the nearby trees, which is not very hard since a Velociraptor was actually only about the size of a dog (and had feathers). While the Raptor struggles to get back on its feet, you pull the trigger, and half its body disappears in a cloud of subatomic particles. You blow into the tube of the Chrono-gun, just for effect.
+pln You continue exploring the prehistoric jungle, and soon after arrive at a clearing, where a majestic Triceratops is eating the various jungle plants. While you are watching the peaceful animal, you hear a roar that makes the ground shake, and causes rings to appear in the puddles of water. Trees topple, and a ferocious Tyrannosaurus Rex steps into the clearing. The Triceratops tries to escape, but one of its front legs is stuck in a root.
+/*
+If you attempt to rescue the Triceratops, turn to 24.
+If you let nature take its course, turn to 21.
+*/
+btn 24, Attempt to rescue the Triceratops
+btn 21, Let nature take its course
+end
+
+:63
+/* This time adventure starts at 70. */
+pln You put your hand on your heart, and gasp audibly. “What an amazing painting, my good man. I’ve never seen such energy in the interplay between the colors. You have truly caught the … uh… special idiosyncrasy of Vienna. Your talent is remarkable. I strongly recommend that you spend all your time pursuing your career as a painter.”
+pln Hitler’s face lights up, and he shakes your hand. “A thousand times thank you! You have exceptional taste. All my friends tell me that my paintings are mediocre, but I always thought they just had bad taste. You have restored my confidence.”
+pln Unfortunately, it does not take long for Hitler to discover that he truly is without talent. The false hopes you gave him make him even more evil and bitter. World War II becomes much worse.
+/* If you stay in the new Europe, and try to make amends for the damage you have done, then your story ends here. Otherwise, you can use your time travel ability to turn to any other section. */
+btn final63, Stay in the new Europe, and try to make amends for the damage you have done
+end
+
+:64
+/* You threaten the guard with the Chrono-gun. */
+pln The guard slowly puts his hands in the air. “Calm down, Sir. Think about what you are doing. It’s not too late to change your mind. Give me the gun, and we will pretend this never happened.”
+/*
+If you order the guard to escort you to the control room, turn to 7.
+If you shoot the guard, turn to 61.
+If you give him the gun, turn to 5.
+*/
+btn 7, Order the guard to escort you to the control room
+btn 61, Shoot the guard
+btn 5, Give him the gun
+end
+
+:65
+/* You tell the professor what Bent said. */
+pln ”Fuck you, Professor Halvorsen!” you yell. Several technicians stop taking notes, and look at you. “I’ve repeated this day more times than I can count. It won’t pass by itself. Bent says the machine has a component that removes Chrono-radiation. Don’t deny it. I suggest we use it.”
+pln There is a long pause, and then the professor nods. “If it can’t be any different. I’m just afraid it might overload the machine, and we will have to cancel the journey.”
+pln “I don’t know what Bent has been telling you, but nothing in the theories predicts ‘time loops’. It’s correct that some theoreticians believe that Chrono-radiation can cause spontaneous time travel, but in that case you should be able to travel to any point in time you want. That’s why I assumed you were imagining it, when you said that the same day keeps repeating. If Chrono-radiation is truly the issue, you must be subconsciously choosing to travel back to the start of the same day. If you are interested, I can try to teach you how to control your destination.”
+/*
+If you insist on having the Chrono-radiation removed immediately, turn to 38.
+If you want to test the professor’s hypothesis, turn to 28.
+*/
+btn 38, Insist on having the Chrono-radiation removed immediately
+btn 28, Test the professor’s hypothesis
+end
+
+:66
+pln You sit down in the revolving chair, safe in the knowledge that this time will be different. The opening in the wall closes, and the professor speaks through the intercom:
+pln “Are you ready in there? We have already calibrated the measuring equipment. You can start the machine by pushing the red button at panel b17. Go for it, whenever you are ready.”
+pln You push the button. The machine begins vibrating, faster and faster.
+pln ”What the hell?” says the professor. “The frequency is way too high. It can’t be true! We just calibrated the machine.”
+pln The vibrations increase, and you have to grab the chair to remain seated. You hear a faint tingling noise from within the walls, like a thousand fine champagne glasses breaking simultaneously. The machine stops, and the smell of smoke spreads throughout the compartment.
+pln The door slides open, and you step out.
+pln The professor tears his hair. “What the devil went wrong? Did you push the right button? Why are you smiling?”
+pln You shrug, but suddenly feel dizzy, and have to support yourself against the wall of the machine. The professor’s voice sounds like it’s coming from far away, behind a wall of wadding. The surroundings start to shimmer, and then disappears. You are floating in infinite darkness.
+pln You close your eyes, and pray that something will at least be different this time, but the familiar sound of steps on marble shatters your hopes. You open your eyes, and consider the magnificent building ahead.
+/* Turn to 1. */
+btn 1, Next
+end
+
+:67
+/* You talk to the guard about your near-death experience. */
+pln You put your hand on the guard’s shoulder. “You can’t harm me. I already died. No matter what you do, I will return.”
+pln ”I think you need to see a psychiatrist, Sir. Talk to your superior about scheduling a time.”
+pln He escorts you back to the lobby, and you continue through the double-doors, as you have done countless times before.
+/* Turn to 42 */
+btn 42, Next
+end
+
+:68
+/* This time adventure starts at 11. */
+pln You slowly approach Nero. The fire and the music enraptures him. You kneel, and then push him as hard as you can, over the railing. He screams, and the harp slips from his hands. Seconds later, he hits the ground and is still.
+pln You smile. You have freed Rome from an evil tyrant.
+pln Nero would have died in four years, anyway, so your action does not make much of a difference. The following civil war happens a few years earlier, but largely, history continues as normal.
+/* If you decide to stay in ancient Rome, then your story ends here. Otherwise, you can use your time travel ability to turn to any other section. */
+btn final68, Stay in ancient Rome
+end
+
+:69
+near_death_experience = 1
+pln You sit down in the chair, and smile, an empty joyless smile. Halvorsen starts with his usual bullshit, but you push the button before he can get going. The machine starts vibrating. First slowly. Then faster and faster.
+pln ”What the hell?” says the professor. “The frequency is completely out of phase. It can’t be true! We just calibrated the machine.”
+pln The machine begins to shake violently, and smoke spreads throughout the compartment. The following explosion reduces you to a cloud of subatomic particles.
+pln For a moment, you are at peace. Then you become aware of your existence, even though all sensory input has ceased. Darkness replaces the nothingness. The darkness dissipates, and you find yourself on solid ground.
+pln You ascend the staircase, like a man on his way home from his own funeral.
+/*
+You can talk to people about your near-death experience, by adding 33 to the section where you meet them, and turning to the corresponding section.
+Turn to 1.
+*/
+btn 1, Next
+end
+
+:70
+pln Vienna in the 20’s. You wander the streets, enjoying the classic Bauhaus architecture.
+pln At a nearby street corner, a young man is painting one of the buildings. You approach, and consider the painting. It is okay.
+pln The painter notices you. ”Good day, my good man. My name is Adolf Hitler. Would you like to purchase a painting?”
+/*
+If you shoot Hitler, turn to 19.
+If you praise his paintings, turn to 63.
+You can also just leave him alone. If you stay in Vienna, then your story ends here. Otherwise, you can use your time travel ability to turn to any other section.
+*/
+btn 19, Shoot Hitler
+btn 63, Praise his paintings
+btn final70, Just leave him alone and stay in Vienna
+end
+
+:71
+/* This time adventure starts at 52. */
+pln The order is given, and you pour from the trenches. You sneak your Chrono-gun out of your sleeve, and smile at the thought of the great victory that will be won with your assistance. You look forward to being a hero.
+pln Seconds later, a machine gun mows you down.
+/* Fortunately, your time travel ability transcends even death, as you learned previously. You can return to life by turning to any other section you like. You can also choose to remain dead, and finally achieve peace. If so, your story ends here. */
+btn final18and71, Choose death and finally achieve peace
+end
+
+:72
+/* This time adventure starts at 48. */
+pln The horse gallops towards the black knight, while you struggle to stay in the saddle. Several times, you almost drop the lance. The black knight sweeps you off the saddle, and you land in the mud. The spectators boo you, while you limp away from the track. It was fun to try, but you probably are not knight material.
+/*
+If you decide to stay in medieval times, regardless, then your story ends here.
+Otherwise, you can use your time travel ability to turn to any other section.
+*/
+btn final72, Stay in medieval times, regardless
+end
+
+:73
+pln Machines and terminals surround you. The subdued hum of hundreds of ventilators fills the room. The air smells faintly of ozone.
+pln After a while, you manage to locate the terminal that controls the settings of the Chrono-machine. Most of it is way over your head, but you learned the basics during your training. Unfortunately, it does not seem like the machine is set to return you to the start of the day. Everything seems to be in order.
+/*
+If you sabotage the Chrono-machine, so it won’t work, turn to 8.
+If you set the Chrono-machine to explode, turn to 27.
+If you give up, and go to the laboratory, turn to 42.
+*/
+/* For UrqW: Instead of turning to 42, turn directly to 25 */
+btn 8, Sabotage the Chrono-machine, so it won’t work
+btn 27, Set the Chrono-machine to explode
+btn 25, Give up and go to the laboratory
+end
+
+/*
+Solution
+Start by inspecting your equipment, by turning to 56. You will now have the opportunity to show your card to people. Enter the building. You can make Alex let you through the door, by first asking, and then showing the card, by adding 10 to the number of the section in question. There are other ways to get through the door, but you do not have to find them to complete the story.
+Continue through the double doors, and use the time machine. You now have the opportunity to talk to people about your experience. Talk to Bent, by turning to 20, at the beginning. Talk to him about your experience, by adding another 20, and turning to 40.
+You now have the opportunity to either talk to Halvorsen, or visit his office. Halvorsen will refuse to help you, so you can examine his office by adding 15 to section 42, where you are in the elevator, and turning to 57.
+In Halvorsen’s office, you’ll need the password to the computer. By examining the desk drawer and the bookshelves, you will learn that the password is based on Beethoven, who was born in 1770. You can therefore guess the password, by turning to section 1+7+7+0 = 15.
+You now have the code for the white door in the corridor behind the discreet metal door. Make Alex let you through the door again, and attempt to open the white door.
+You can enter the code by adding 12 to the number of the section, and turning to 49. In the room behind the door, you will find a Chrono-gun.
+Continue down the corridor, where you will meet a guard. You can threaten the guard with the gun, by adding 30 to the section, and turning to 64. Tell the guard to escort you to the control room, and then tie him up. In the control room, choose to set the machine to explode. The next time you use the machine, add 9 to the section, and turn to 69.
+Talk to Bent about the result, by adding 33 to the section, and turning to 53.
+You now have the opportunity to talk Halvorsen about the extra information you received from Bent. The next time you meet Halvorsen, tell him about the explosion, by adding 33 to the section, and turning to 58. Halvorsen still will not take you seriously, but you can tell him what Bent said, by adding another 7, and turning to 65.
+After talking to the professor, you will have the opportunity to either stop the loop, or learn to travel through time by your own power. It is up to you.
+*/
+
+:final17
+pln You spend the rest of your life ruling Rome.
+goto final
+
+:final18and71
+pln You choose to remain dead, and finally achieve peace.
+goto final
+
+:final19
+pln You stay in the new Europe.
+goto final
+
+:final21
+pln You spend the rest of your days exploring the prehistoric world.
+goto final
+
+:final22
+pln You live out the rest of your days as a famous knight.
+goto final
+
+:final24
+pln You spend the rest of your days exploring the prehistoric world on the back of your tame Triceratops.
+goto final
+
+:final63
+pln You stay in the new Europe, and try to make amends for the damage you have done.
+goto final
+
+:final68
+pln You stay in ancient Rome.
+goto final
+
+:final70
+pln You just leave Hitler alone and stay in Vienna.
+goto final
+
+:final72
+pln You stay in medieval times, regardless.
+goto final
+
+:final
+pln This story ends here.
+quit
+end
+
+:common_travel
+btn travel, Use your time travel ability
+end
+
+:travel
+javascript = "JSON.parse('" + adventure_queue + "').length;"
+if javascript > 0 then goto travel_next else goto travel_restart
+end
+
+:travel_next
+javascript = "JSON.parse('" + adventure_queue + "')[0];"
+adventure = javascript
+javascript = "JSON.stringify(JSON.parse('" + adventure_queue + "').slice(1));"
+adventure_queue = javascript
+goto #adventure$
+end
+
+:travel_restart
+javascript = "JSON.stringify(shuffleArray(JSON.parse('" + adventure_list + "')));"
+adventure_queue = javascript
+javascript = "JSON.parse('" + adventure_queue + "')[0];"
+if javascript = adventure then \
+	javascript = "JSON.stringify(JSON.parse('" + adventure_queue + "').slice(1).concat('" + adventure + "'));" &\
+	adventure_queue = javascript
+goto travel_next
+end
+
+:about
+pln Initially, this game was created as an old-school choose-your-own-adventure (CYOA) story, where you make choices by selecting which of the numbered sections to read next.
+pln It was originally written for publication in an anthology of Danish Science Fiction stories “<span lang="da">Nær og Fjern</span>” in 2013, and is available from the <a href="https://www.sciencefiction.dk/udgivelser/bog/naer-og-fjern" target="_blank">Science Fiction Circle</a>, where it is titled “<span lang="da">Fanget i tiden</span>” in Danish.
+pln Later, the author’s own English translation titled “Trapped in Time” was entered into the 2013 <a href="https://ifcomp.org/comp/2013" target="_blank">Interactive Fiction Competition</a> (IFComp) as a PDF file, where it took 11th place out of 35. An impressive result for a PDF document entered into a computer game competition.
+pln The game went on to win the 2013 <a href="http://xyzzyawards.org/awards/historical.php?year=2013##38$round=2" target="_blank">XYZZY Awards</a> for Best Implementation, the following spring.
+pln <blockquote>“…For a game that doesn’t contain a single line of code to win Implementation has to be a first!”</blockquote> (From the author’s speech for the XYZZY Awards ceremony.)
+pln The English translation is available in PDF format at the <a href="https://ifdb.org/viewgame?id=juj5b61griyoswn2" target="_blank">Interactive Fiction Database</a> and on <a href="https://github.com/SimonChris/Works" target="_blank">GitHub</a>.
+pln Also, the Danish version was a nominee for the 2013 <a href="https://www.ommadawn.dk/design2.php?sideid=1515" target="_blank">Niels Klim Awards</a> for Best Novelette, and the English version was a nominee for the 2013 <a href="https://ifdb.org/viewcomp?id=6on8cn4isv3r4gwj" target="_blank">Xyzzy Awards</a> for Best Use of Innovation.
+pln <blockquote>“…I was surprised when I saw the nomination, as the game is a very old-school Choose-Your-Own-Adventure story. I guess the innovative part is having the balls to enter a PDF into the IFComp, eh?”</blockquote> (From the author’s speech for the XYZZY Awards ceremony.)
+pln This version of the game is the result of porting from a PDF document to the <a href="https://github.com/urqw/UrqW" target="_blank">UrqW engine</a>. The porting was done with the preservation of the original text and with the automation of game mechanics.
+pln During the porting process, almost all of the original version’s text has been preserved, with only a few additions and changes made as minor technical adjustments.
+pln However, the UrqW version has a number of significant differences from the original PDF version:
+pln 1. In the original PDF version, the player could not access 17 out of 73 sections via reference navigation. It was intended that this part of the game content would be discovered through random flipping or sequential reading. The UrqW version implemented additional choice options that allow access to absolutely all text fragments. All 12 endings of the game have been preserved and are available in the UrqW version.
+pln 2. In the UrqW version, the computer hacking mechanics were changed taking into account the specifics of the game interface. Experience from the PDF version will be useful, but will not be completely identical.
+pln 3. In the UrqW version, the conditions for some choice options to appear are made more strict than in the original PDF version. This will require more attention and more time loops to complete. On the other hand, the hiding of some one-time plot branches is automated, which, on the contrary, can simplify the gameplay.
+pln Thus, the UrqW version of the game is in many ways a separate work, and is not an exact replica of the original PDF version.
+pln The game's source code and other resources are available in a <a href="https://github.com/tseykovets/trapped_in_time" target="_blank">public repository</a>.
+btn start, Back
+end
