@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ifindex version="1.0" xmlns="http://babel.ifarchive.org/protocol/iFiction/">
+	<story>
+		<identification>
+			<ifid>E8711043-7402-457E-B4ED-8310D65114CA</ifid>
+			<format>urqw</format>
+		</identification>
+		<bibliographic>
+			<title>Trapped in Time</title>
+			<author>Simon Christiansen and Nikita Tseykovets</author>
+			<language>en</language>
+			<headline>A Science Fiction adventure where YOU are the hero!</headline>
+			<firstpublished>2025-08-16</firstpublished>
+			<genre>Science Fiction</genre>
+			<group>URQ</group>
+			<description>You are standing in front of the magnificent skyscraper that houses the Copenhagen Institute of Chronology, the world’s leading center for chronological research.<br/>
+				In spite of your many years of Chrono-training, you can’t help but feel butterflies in your stomach. Today is the day! Finally, your training will pay off.</description>
+		</bibliographic>
+		<contacts>
+			<url>https://urqw.github.io/UrqW/#trapped_in_time</url>
+			<authoremail>tseikovets@rambler.ru</authoremail>
+		</contacts>
+		<colophon>
+			<generator>Nikita Tseykovets</generator>
+			<originated>2025-08-24</originated>
+		</colophon>
+	</story>
+</ifindex>
