@@ -14,7 +14,8 @@
 			<genre>Science Fiction</genre>
 			<group>URQ</group>
 			<description>You are standing in front of the magnificent skyscraper that houses the Copenhagen Institute of Chronology, the world’s leading center for chronological research.<br/>
-				In spite of your many years of Chrono-training, you can’t help but feel butterflies in your stomach. Today is the day! Finally, your training will pay off.</description>
+				In spite of your many years of Chrono-training, you can’t help but feel butterflies in your stomach. Today is the day! Finally, your training will pay off.<br/>
+				Porting to UrqW by Nikita Tseykovets.</description>
 		</bibliographic>
 		<contacts>
 			<url>https://urqw.github.io/UrqW/#trapped_in_time</url>
@@ -22,7 +23,7 @@
 		</contacts>
 		<colophon>
 			<generator>Nikita Tseykovets</generator>
-			<originated>2025-08-24</originated>
+			<originated>2025-09-28</originated>
 		</colophon>
 	</story>
 </ifindex>
