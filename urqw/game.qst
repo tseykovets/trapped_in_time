@@ -241,9 +241,9 @@ pln You notice your good friend, Bent Asmussen, on his way down the stairs. Bent
 pln Bent’s face lights up, and he shakes your hand. “Good morning. I just checked the equipment, and everything is in perfect condition. Are you ready?”
 pln “Of course. I’ve been training for this day for years.”
 p ”Naturally!” Bent laughs. ”I look forward to hearing about your experiences when you return. I gotta go, though. Professor Halvorsen has sent me to pick up some spare parts. Good luck with everything!”
-if not (inspect_equipment or experience or chrono_gun or near_death_experience) \
-then pln #$Bent continues down the stairs, and soon disappears in the crowd. \
-else pln
+if not (inspect_equipment or experience or chrono_gun or near_death_experience)
+_ then pln #$Bent continues down the stairs, and soon disappears in the crowd.
+_ else pln
 /*
 If you continue inside the building, turn 36.
 You can also inspect your equipment, if you haven’t already done so, by turning to 56.
@@ -404,8 +404,8 @@ pln ”You seem lost,” says the guard. “This area is restricted to authorize
 He escorts you back to the lobby, and you decide to move on.
 Turn to 42.
 */
-if not (inspect_equipment or experience or chrono_gun or near_death_experience) \
-then pln He escorts you back to the lobby.
+if not (inspect_equipment or experience or chrono_gun or near_death_experience)
+_ then pln He escorts you back to the lobby.
 btn 42, Move on
 if inspect_equipment then btn 44, Show your card to the guard
 if experience then btn 54, Talk to the guard about your experience
@@ -975,9 +975,9 @@ end
 javascript = "JSON.stringify(shuffleArray(JSON.parse('" + adventure_list + "')));"
 adventure_queue = javascript
 javascript = "JSON.parse('" + adventure_queue + "')[0];"
-if javascript = adventure then \
-	javascript = "JSON.stringify(JSON.parse('" + adventure_queue + "').slice(1).concat('" + adventure + "'));" &\
-	adventure_queue = javascript
+if javascript = adventure then
+_ javascript = "JSON.stringify(JSON.parse('" + adventure_queue + "').slice(1).concat('" + adventure + "'));" &
+_ adventure_queue = javascript
 goto travel_next
 end
 
