@@ -4,7 +4,7 @@ Text-based game "Trapped in Time" by Simon Christiansen and Nikita Tseykovets.
 
 The game is in English and developed for [UrqW](https://github.com/urqw/UrqW) text-based game engine.
 
-This repository contains the source code and other resources of the game. The game is available for launch in the [UrqW engine online catalog](https://urqw.github.io/UrqW/#trapped_in_time).
+This repository contains the source code and other resources of the game. The game is available for launch in the [UrqW engine online catalog](https://urqw.github.io/UrqW/?id=trapped_in_time).
 
 The game was first published on August 16, 2025.
 
