@@ -6,6 +6,9 @@ This file is part of the Trapped in Time game.
 SPDX-License-Identifier: CC0-1.0
 */
 
+UIHide ("mute", true)
+UIHide("inv", true)
+
 :start
 pln <h1 class="game_title">Trapped in Time</h1>
 pln <div class="game_subtitle">A Science Fiction adventure where YOU are the hero!</div>
